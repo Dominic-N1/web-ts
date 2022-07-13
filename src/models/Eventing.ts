@@ -4,9 +4,8 @@ export class Eventing {
   events: { [key: string]: Callback[] } = {};
 
   on = (eventName: string, callback: Callback): void => {
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
+    this.events[eventName] ||= [];
+    this.events[eventName].push(callback);
   };
 
   trigger = (eventName: string): void => {
